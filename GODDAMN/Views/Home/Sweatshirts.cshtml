@@ -1,0 +1,141 @@
+﻿@using GODDAMN.Controllers
+@using GODDAMN.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model Tuple<IEnumerable<Product>, IEnumerable<MorW>>
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.Category</h1>
+    <br>
+    <hr color=black>
+    <p></p>
+</div>
+@{
+    Basket basket = new Basket();
+}
+
+@if (Model.Item2.First().Name == "W")
+{
+    @foreach (var product in Model.Item1)
+    {
+        @if (product.CategoryId == 3 && product.IsFavourite == true)
+        {
+            <div class="container">
+                                <div class="shadow-lg">
+
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="scale1">
+
+                                <img src="@product.Img" class="img-fluid rounded-start" alt="...">
+
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="mytext">@product.Name</h5>
+                                <p class="mytext"><small class="text-muted">Размер: @product.Size</small></p>
+                                <p class="mytext"><small class="text-muted">Цена: @product.Price</small></p>
+
+                                @{
+                                    basket.UserId = User.Identity.Name;
+                                    basket.ProductId = product.Id;
+                                }
+                                @{
+                                    basket.UserId = User.Identity.Name;
+                                    basket.ProductId = product.Id;
+                                    <div>
+                                        <form method="post" asp-action="AboutProduct" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@product.Id" />
+                                            <input type="submit" class="floating-button1" value="Подробности" />
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <span style="padding: 0px 5px;">&nbsp;</span>
+
+                                        <form method="post" asp-action="Create" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@basket.UserId" />
+                                            <input type="hidden" name="b" value="@basket.ProductId" />
+                                            <input type="hidden" name="c" value="Sweatshirts" />
+                                            <input type="submit" class="floating-button1" value="Добавить" />
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <span style="padding: 0px 20px;">&nbsp;</span>
+
+        }
+
+
+    }
+
+
+}
+else if (Model.Item2.First().Name == "M")
+{
+    @foreach (var product in Model.Item1)
+    {
+        @if (product.CategoryId == 3 && product.IsFavourite == false)
+        {
+            <div class="container">
+                <div class="shadow-lg">
+
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="scale1">
+
+                                <img src="@product.Img" class="img-fluid rounded-start" alt="...">
+
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="mytext">@product.Name</h5>
+                                <p class="mytext"><small class="text-muted">Размер: @product.Size</small></p>
+                                <p class="mytext"><small class="text-muted">Цена: @product.Price</small></p>
+
+                                @{
+                                    basket.UserId = User.Identity.Name;
+                                    basket.ProductId = product.Id;
+                                }
+                                @{
+                                    basket.UserId = User.Identity.Name;
+                                    basket.ProductId = product.Id;
+                                    <div>
+                                        <form method="post" asp-action="AboutProduct" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@product.Id" />
+                                            <input type="submit" class="floating-button1" value="Подробности" />
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <span style="padding: 0px 5px;">&nbsp;</span>
+
+                                        <form method="post" asp-action="Create" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@basket.UserId" />
+                                            <input type="hidden" name="b" value="@basket.ProductId" />
+                                            <input type="hidden" name="c" value="Sweatshirts" />
+                                            <input type="submit" class="floating-button1" value="Добавить" />
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <span style="padding: 0px 20px;">&nbsp;</span>
+
+        }
+
+
+    }
+}

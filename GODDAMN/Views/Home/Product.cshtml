@@ -1,0 +1,15 @@
+﻿@using GODDAMN.Models
+@model IEnumerable<Product>
+
+    @{
+        foreach (var product in Model)
+        {
+         <div>
+            <h2>@product.Name</h2>
+            <img src="@product.Img" class="card-img-top" alt="...">
+        </div>
+        
+    }
+    }
+
+

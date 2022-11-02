@@ -1,0 +1,35 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@using Microsoft.AspNetCore.Identity
+@using GODDAMN.Mocks
+@using System.Collections
+@{
+    ViewData["Title"] = "Главная";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    MockCategory abc = new MockCategory();
+    <style>
+        BODY {
+            background: url(/img/italy.jpg) repeat-x; /* Параметры фона */
+            text-align: center; /* Выравнивание блока по центру */
+        }
+    </style>
+    <div class="text-center">
+
+        <h1 class="mytextind3">GD - GODDAMN</h1>
+    </div>
+    <div class="text-center">
+        <hr color=white>
+        <h4 class="mytextind2">
+            Италия является одной из ведущих стран в области дизайна одежды. Мода всегда была важной частью культурной жизни и общества страны, и итальянцы хорошо известны своим вниманием к одежде; la bella figura, или хороший внешний вид, сохраняет свое традиционное значение.
+            Итальянская мода стала заметной в 11-16 веках, когда художественное развитие в Италии было на пике. Такие города, как Рим, Палермо, Венеция, Милан, Неаполь, Флоренция и Виченца, начали производить предметы роскоши, головные уборы, косметику, украшения и дорогие ткани. Итальянская мода связана с наиболее обобщенным понятием "Сделано в Италии", товарным брендом, выражающим совершенство творчества и мастерства. Итальянские предметы роскоши известны качеством текстиля, элегантностью и изысканностью их изготовления.
+        </h4>
+    </div>
+
+}
+else
+{
+    <div class="text-center">
+        <img src="/img/pls log.jpg" class="card-img-top" alt="...">
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GODDAMN.Models.Product>
+    <div class="text-center">
+    <h1 class="display-4">Поиск по @ViewBag.Name</h1>
+    <br>
+    <hr color=black>
+
+@foreach (var product in Model){
+    <div class="shadow-lg">
+    <div class="container">
+    <div>
+                    <span style="padding: 0px 20px;">&nbsp;</span>
+
+        <h2>@product.Name</h2>
+                    <span style="padding: 0px 20px;">&nbsp;</span>
+
+        </div>
+        <div class="scale1">
+            <img class="center_" src="@product.Img" width="610" height="620" />
+        </div>
+        <div>
+            <span style="padding: 0px 5px;">&nbsp;</span>
+            <span style="padding: 0px 5px;">&nbsp;</span>
+            <span style="padding: 0px 5px;">&nbsp;</span>
+        </div>
+        <div class="mytextind1">
+            <div class="shadow-sm">
+            <span class="">@product.Description</span>
+            </div>
+        </div>
+        <div class="mytextind">
+            <span>Размер: @product.Size</span>
+            <span style="padding: 0px 5px;">&nbsp;</span>
+
+            <span>Цена: @product.Price</span>
+            <span style="padding: 0px 5px;">&nbsp;</span>
+        </div>
+
+
+        <form method="post" asp-action="Create" asp-controller="Home">
+            <input type="hidden" name="a" value="@User.Identity.Name" />
+            <input type="hidden" name="b" value="@product.Id" />
+            <input type="hidden" name="c" value="About" />
+            <input type="submit" class="floating-button" value="Добавить" />
+        </form>
+        </div>
+        </div>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+
+    }
+</div>
+

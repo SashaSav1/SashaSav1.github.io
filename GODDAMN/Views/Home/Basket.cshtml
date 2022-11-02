@@ -1,0 +1,134 @@
+﻿@using static GODDAMN.Data.ApplicationDbContext
+@using GODDAMN.Data
+@using GODDAMN.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@*@model IEnumerable<Basket>
+*@
+@model Tuple<IEnumerable<Basket>, IEnumerable<Product>>
+
+
+@{
+
+    ViewData["Title"] = "Ваша корзина";
+    //Model.Item2.Reverse();
+
+
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        <br>
+        <p></p>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px px;">&nbsp;</span>
+
+    </div>
+
+    Basket basket = new Basket();
+    double sum = 0;
+
+    <input type="submit" class="floating-button" value="Оплатить" />
+    <hr color=black>
+
+
+
+    @*                <div class="container">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <div class="scale1">
+                                    <img src="@product_.Img" class="img-fluid rounded-start" alt="...">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="mytext">@product_.Name</h5>
+                                    <p class="mytext"><small class="text-muted">Размер: @product_.Size</small></p>
+
+                                    <p class="mytext"><small class="text-muted">Цена: @product_.Price</small></p>
+                                    @{
+                                        //basket.UserId = User.Identity.Name;
+                                        basket.ProductId = product.Id;
+                                    }
+
+                                        <form method="post" asp-action="Delete" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@basket.ProductId" />
+                                        <input type="submit" class="btn btn-dark" value="Удалить" />
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+*@
+
+    
+    @foreach (var product in Model.Item1)
+    { 
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+
+
+                @foreach (var product_ in Model.Item2)
+                {
+
+                    if (product.UserId == User.Identity.Name && product.ProductId == product_.Id)
+                    {
+                        sum += product_.Price;
+
+                   
+                        <div class="shadow-lg">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <div class="scale1">
+                                        <img src="@product_.Img" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="mytext">@product_.Name</h5>
+                                        <p class="mytext"><small class="text-muted">Размер: @product_.Size</small></p>
+
+                                        <p class="mytext"><small class="text-muted">Цена: @product_.Price</small></p>
+                                        @{
+                                            //basket.UserId = User.Identity.Name;
+                                            basket.ProductId = product.Id;
+                                        }
+
+                                        <form method="post" asp-action="Delete" asp-controller="Home">
+                                            <input type="hidden" name="a" value="@basket.ProductId" />
+                                    <input type="submit" class="floating-button1" value="Удалить" />
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    
+                    }
+                }
+                }
+       
+
+                <span style="padding: 0px 20px;">&nbsp;</span>
+           
+    <p  class="texrig">Общая стоимость: @sum</p>
+
+}else{
+    <img src="/img/pls log.jpg" class="card-img-top" alt="...">
+}
