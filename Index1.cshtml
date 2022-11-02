@@ -1,0 +1,102 @@
+﻿
+@inject SignInManager<IdentityUser> SignInManager
+@using Microsoft.AspNetCore.Identity
+@using GODDAMN.Mocks
+@using System.Collections
+@{
+    ViewData["Title"] = "Главная";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    MockCategory abc = new MockCategory();
+
+    <div class="text-center">
+        <h1 class="display-4"></h1>
+
+        <h1 class="display-4">Выберите категорию</h1>
+        <br>
+        <hr color=black>
+        <p></p>
+    </div>
+    @*    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="card border-light mb-3">
+                    <img src="@abc.AllCategories.First().Img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@abc.AllCategories.First().CategoryName</h5>
+                        <p class="card-text-bg-info">@abc.AllCategories.First().Description</p>
+                        <a class="about" background=#fff asp-area="" asp-controller="Home" asp-action="Shoes">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card border-light mb-3">
+                    <img src="@abc.AllCategories.ElementAt(1).Img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@abc.AllCategories.ElementAt(1).CategoryName</h5>
+                        <p class="card-text-bg-info" font-size: 17px>@abc.AllCategories.ElementAt(1).Description</p>
+                        <a class="about" asp-area="" asp-controller="Home" asp-action="Pants">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card border-light mb-3">
+                    <img src="@abc.AllCategories.ElementAt(2).Img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@abc.AllCategories.ElementAt(2).CategoryName</h5>
+                        <p class="card-text">@abc.AllCategories.ElementAt(2).Description</p>
+                        <a class="about" asp-area="" asp-controller="Home" asp-action="Sweatshirts">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card border-light mb-3">
+                    <img src="@abc.AllCategories.ElementAt(3).Img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@abc.AllCategories.Last().CategoryName</h5>
+                        <p class="card-text">@abc.AllCategories.ElementAt(3).Description</p>
+                        <a class="about" asp-area="" asp-controller="Home" asp-action="Hats">Перейти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+*@
+    <div class="container">
+        <div class="shadow-lg">
+             <a asp-area="" asp-controller="Home" asp-action="Shoes"><img src="~/img/PradaCat1.jpg" class="scale" alt="..."></a>
+        </div>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+
+        <div class="shadow-lg">
+            <a asp-area="" asp-controller="Home" asp-action="Pants"><img src="~/img/VersaceCat1.jpg" class="scale" alt="..."></a>
+        </div>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+
+        <div class="shadow-lg">
+            <a asp-area="" asp-controller="Home" asp-action="Sweatshirts"><img src="~/img/ValentinoCat1.jpg" class="scale" alt="..."></a>
+        </div>
+        <span style="padding: 0px 20px;">&nbsp;</span>
+
+        <div class="shadow-lg">
+            <a asp-area="" asp-controller="Home" asp-action="Hats"><img src="~/img/GucciCat1.jpg" class="scale" alt="..."></a>
+        </div>
+    </div>
+
+
+
+
+
+
+}
+else
+{
+    <div class="text-center">
+        @*       <h1 class="display-4">Пожалуйста, войдите в свой аккаунт.</h1>
+    *@
+        <img src="/img/pls log.jpg" class="card-img-top" alt="...">
+
+
+    </div>
+}
